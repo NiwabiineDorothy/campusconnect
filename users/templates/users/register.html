@@ -1,0 +1,32 @@
+{% extends "blog/base.html"%}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="content-section p-4 rounded-3 shadow">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-center" style="color: #008000; font-weight: 600;">Join Campus Connect</legend>
+                {{ form.media }}
+                <div class="row g-3">
+                    {% for field in form %}
+                    <div class="col-md-{% if field.name == 'username' or field.name == 'email' %}6{% else %}12{% endif %}">
+                        {{ field|as_crispy_field }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </fieldset>
+            <div class="form-group text-center mt-4">
+                <button class="btn btn-primary px-4 py-2 rounded-pill" type="submit" style="background-color: #008000; border: none;">
+                    Sign Up <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </form>
+        <p></p>
+        <div class="border-top pt-3 text-center">
+            <small class="text-muted">
+                Already have an account? 
+                <a class="ml-2 fw-bold" href="{% url 'login' %}" style="color: #008000; text-decoration: none;">Sign In</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}

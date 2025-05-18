@@ -1,0 +1,33 @@
+{% extends "blog/base.html"%}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="content-section p-4 rounded-3 shadow">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-center" style="color: #008000; font-weight: 600;">Welcome Back</legend>
+                {{ form|crispy }}
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                </div>
+            </fieldset>
+            <div class="form-group text-center mt-4">
+                <button class="btn btn-primary px-4 py-2 rounded-pill" type="submit" style="background-color: #008000; border: none;">
+                    Log In <i class="bi bi-box-arrow-in-right ms-2"></i>
+                </button>
+                <div class="mt-2">
+                    <small class="text-muted">
+                        <a href="{% url 'password_reset' %}" style="color: #008000; text-decoration: none;">Forgot password?</a>
+                    </small>
+                </div>
+            </div>
+        </form>
+        <div class="border-top pt-3 text-center">
+            <small class="text-muted">
+                New to Campus Connect? 
+                <a class="fw-bold" href="{% url 'register' %}" style="color: #008000; text-decoration: none;">Create an account</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
