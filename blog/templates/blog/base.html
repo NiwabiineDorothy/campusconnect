@@ -1,0 +1,500 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --success-color: #4ade80;
+            --warning-color: #fbbf24;
+            --danger-color: #f87171;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .bg-steel {
+            background-color: var(--primary-color) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-2px);
+        }
+        
+        .navbar-nav .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        .content-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .list-group-item {
+            border: none;
+            padding: 1rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .list-group-item:hover {
+            background-color: var(--light-color);
+            transform: translateX(5px);
+        }
+        
+        .btn-custom {
+            background-color: white;
+            color: var(--primary-color) !important;
+            border: 1px solid var(--primary-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            background-color: var(--primary-color);
+            color: white !important;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .logout-link {
+            background-color: var(--danger-color) !important;
+            color: white !important;
+            border-radius: 8px;
+            margin: 0.5rem;
+        }
+        
+        .article-img {
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .article-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        .alert {
+            border-radius: 8px;
+        }
+        
+        footer {
+        
+        background-color: #4361ee;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .dropdown-menu {
+            border-radius: 8px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dropdown-item {
+            padding: 0.5rem 1.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+        }
+        
+        /* Calendar styling */
+        .fc {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .fc-toolbar-title {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .fc-button {
+            background-color: var(--primary-color) !important;
+            border: none !important;
+        }
+        
+        /* Center everything in main content */
+        main.container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .row {
+            justify-content: center;
+            width: 100%;
+        }
+        
+        /* Modern form inputs */
+        .form-control {
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+        }
+        
+        #calendar {
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .fc .fc-toolbar-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--dark-color);
+    }
+    
+    .fc .fc-button {
+        background-color: var(--primary-color) !important;
+        border: none !important;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+    
+    .fc .fc-button:hover {
+        background-color: var(--secondary-color) !important;
+        transform: translateY(-1px);
+    }
+    
+    .fc .fc-button:active {
+        transform: translateY(0);
+    }
+    
+    .fc .fc-daygrid-day-number {
+        color: var(--dark-color);
+        font-weight: 500;
+        padding: 4px;
+    }
+    
+    .fc .fc-day-today {
+        background-color: rgba(67, 97, 238, 0.1) !important;
+    }
+    
+    .fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+        color: var(--primary-color);
+        font-weight: 700;
+    }
+    
+    .fc .fc-event {
+        border-radius: 4px;
+        border: none;
+        padding: 2px 4px;
+        font-size: 0.75rem;
+    }
+    
+    .fc .fc-daygrid-event-dot {
+        display: none;
+    }
+    
+    /* Modern Events List Styling */
+    .list-group-item {
+        transition: all 0.2s ease;
+        border-left: 0;
+        border-right: 0;
+    }
+    
+    .list-group-item:first-child {
+        border-top: 0;
+    }
+    
+    .list-group-item:last-child {
+        border-bottom: 0;
+    }
+    
+    .list-group-item:hover {
+        background-color: rgba(67, 97, 238, 0.05);
+        transform: translateX(3px);
+    }
+    
+    .badge {
+        font-weight: 500;
+        padding: 0.35em 0.65em;
+    }
+        
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .sidebar {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
+    {% if title %}
+        <title>Campus Connect - {{ title }}</title>
+    {% else %}
+        <title>Campus Connect</title>
+    {% endif %}
+    
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: '/{{ cal }}/api/posts/',
+            eventColor: '#4361ee',
+            height: 'auto',
+            aspectRatio: 1.2,
+            headerToolbar: false,
+            fixedWeekCount: false,
+            dateClick: function(info) {
+                window.location.href = `/{{ cal }}/calendar/${info.dateStr}`;
+            },
+            dayHeaderContent: function(arg) {
+                return ['S', 'M', 'T', 'W', 'T', 'F', 'S'][arg.date.getDay()];
+            },
+            eventContent: function(arg) {
+                return {
+                    html: `<div class="fc-event-title">${arg.event.title}</div>`
+                };
+            },
+            dayCellContent: function(arg) {
+                return { html: `<div class="fc-daygrid-day-number">${arg.dayNumberText}</div>` };
+            }
+        });
+        calendar.render();
+    });
+</script>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'blog-home' %}">
+                   <i class="bi bi-house"></i> Campus Connect
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                  {% if user.is_authenticated %}
+                    <div class="navbar-nav me-auto">
+                        <a class="nav-item nav-link {% if request.resolver_match.url_name == 'blog-home' %}active{% endif %}" href="{% url 'blog-home' %}">
+                            <i class="bi bi-journal-text me-1"></i>Blogs
+                        </a>
+                        <a class="nav-item nav-link {% if request.resolver_match.url_name == 'event-list' %}active{% endif %}" href="{% url 'event-list' %}">
+                            <i class="bi bi-calendar-event me-1"></i>Events
+                        </a>
+                        <a class="nav-item nav-link {% if request.resolver_match.url_name == 'blog-about' %}active{% endif %}" href="{% url 'blog-about' %}">
+                            <i class="bi bi-info-circle me-1"></i>About
+                        </a>
+                    </div>
+                    <div class="navbar-nav ms-auto">
+                            {% if user.is_superuser %}
+                                <a class="nav-item nav-link" href="/admin/">
+                                    <i class="bi bi-shield-lock me-1"></i>Admin
+                                </a>
+                            {% endif %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                    <i class="bi bi-plus-circle me-1"></i>Add
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'post-create' %}">
+                                        <i class="bi bi-journal-plus me-2"></i>Blog
+                                    </a></li>
+                                    <li><a class="dropdown-item" href="{% url 'event-create' %}">
+                                        <i class="bi bi-calendar-plus me-2"></i>Event
+                                    </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-circle me-1"></i>Profile
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'user-posts' user.username %}">
+                                        <i class="bi bi-person-lines-fill me-2"></i>View Profile
+                                    </a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
+                                            {% csrf_token %}
+                                        </form>
+                                        <a class="dropdown-item text-danger" href="#" onclick="document.getElementById('logout-form').submit();">
+                                            <i class="bi bi-box-arrow-right me-2"></i>Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                      
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                <div class="content-section">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            
+            {% if user.is_authenticated %}
+<div class="col-lg-4">
+    <!-- Modern Calendar Section -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-primary text-white rounded-top-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="h5 mb-0">
+                    <i class="bi bi-calendar3 me-2"></i>My Calendar
+                </h3>
+            </div>
+        </div>
+        <div class="card-body p-3">
+            <div id='calendar'></div>
+        </div>
+        <div class="card-footer bg-light border-0 rounded-bottom-3 py-2">
+            <small class="text-muted d-flex justify-content-between">
+                <span>Click date to view details</span>
+                <span>{{ now|date:"F Y" }}</span>
+            </small>
+        </div>
+    </div>
+
+    <!-- Modern Events Section -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-primary text-white rounded-top-3">
+            <h3 class="h5 mb-0">
+                <i class="bi bi-calendar-check me-2"></i>My Events
+            </h3>
+        </div>
+        <div class="card-body p-0">
+            <div class="list-group list-group-flush">
+                <a href="{% url 'event-userlist' user.username %}" 
+                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <span>
+                        <i class="bi bi-megaphone text-primary me-2"></i>
+                        Events Organized
+                    </span>
+                    <span class="badge bg-primary rounded-pill">{{ user_organized_count }}</span>
+                </a>
+                <a href="{% url 'event-reglist' user.username %}" 
+                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <span>
+                        <i class="bi bi-ticket-perforated text-primary me-2"></i>
+                        Events Registered
+                    </span>
+                    <span class="badge bg-primary rounded-pill">{{ user_registered_count }}</span>
+                </a>
+            </div>
+        </div>
+        <div class="card-footer bg-light border-0 rounded-bottom-3">
+            <a href="{% url 'event-create' %}" class="btn btn-sm btn-outline-primary w-100">
+                <i class="bi bi-plus-circle me-1"></i> Create New Event
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <span class="text-white">© 2025 Campus Connect. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.querySelector('input[type="file"]')?.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Preview Image';
+                img.classList.add('rounded-circle', 'account-img', 'img-thumbnail');
+                document.getElementById('image-preview').innerHTML = '';
+                document.getElementById('image-preview').appendChild(img);
+                document.getElementById('preview-info').textContent = 'Image preview:';
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
