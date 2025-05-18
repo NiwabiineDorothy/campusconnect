@@ -1,0 +1,16 @@
+asgiref
+crispy-bootstrap4
+Django
+django-ckeditor-5
+django-crispy-forms
+django-js-asset
+django-tinymce
+djangorestframework
+gunicorn
+jsmin
+packaging
+pillow
+pytz
+sqlparse
+tzdata
+python-decouple
